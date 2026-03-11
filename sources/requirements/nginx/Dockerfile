@@ -1,5 +1,4 @@
 FROM debian:bookworm
-
 RUN apt update
 RUN apt-get install nginx -y
 RUN apt-get install vim -y
