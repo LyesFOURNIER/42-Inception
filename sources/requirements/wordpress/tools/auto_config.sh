@@ -1,0 +1,30 @@
+#!/bin/bash
+sleep 10
+if [ ! -f "$WP_DIR/wp-config.php" ];then
+	echo "Installing WordPress..."
+	if [ -z "$(ls -A $WP_DIR)" ];then
+		wp core download --path="$WP_DIR" --locale=fr_FR --allow-root
+	else
+		echo "WordPress files already exist, skipping download"
+	fi
+	wp config create --path="$WP_DIR" \
+		--dbname="$DB_NAME" \
+		--dbuser="$DB_USER" \
+		--dbpass="$DB_PASSWORD" \
+		--dbhost="$DB_PASSWORD" \
+		--allow-root
+	wp core install --path="$WP_DIR" \
+		--url="http://$DOMAIN_NAME" \
+		--title="My WordPress Site" \
+		--admin_user="$WP_ADMIN_USER" \
+		--admin_password="$WP_ADMIN_PASSWORD" \
+		--admin_email="$WP_ADMIN_EMAIL" \
+		--skip-email \
+		--allow-root
+else
+	echo "WordPress is already installed, skipping."
+fi
+if [ ! "/run/php" ];then
+	mkdir /run/php
+fi
+exec( "/usr/sbin/php-fpm7.3 -F");
