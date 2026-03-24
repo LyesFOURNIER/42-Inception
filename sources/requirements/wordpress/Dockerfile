@@ -4,9 +4,9 @@ RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install wget -y
 RUN apt-get install curl -y
-RUN apt-get install -y php7.3\
- php-fpm\
- php-mysql\
+RUN apt-get install -y php8.2\
+ php8.2-fpm\
+ php8.2-mysql\
  mariadb-client
 RUN wget https://fr.wordpress.org/wordpress-6.9.4-fr_FR.tar.gz -P /var/www
 RUN cd /var/www && tar -xzf wordpress-6.9.4-fr_FR.tar.gz && rm wordpress-6.9.4-fr_FR.tar.gz

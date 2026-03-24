@@ -1,19 +1,23 @@
 #!/bin/bash
-sleep 10
-if [ ! -f "$WP_DIR/wp-config.php" ];then
+echo "Waiting for MariaDB on $WP_DB_HOST..."
+until mysql -h"$WP_DB_HOST" -u"$WP_DB_USER" -p"$WP_DB_PASSWORD" -e "SELECT 1;" &> /dev/null;do
+	sleep 1
+done
+echo "MariaDB is ready!"
+if [ ! -f "/var/www/wordpress/wp-config.php" ];then
 	echo "Installing WordPress..."
-	if [ -z "$(ls -A $WP_DIR)" ];then
-		wp core download --path="$WP_DIR" --locale=fr_FR --allow-root
+	if [ -z "$(ls -A /var/www/wordpress)" ];then
+		wp core download --path="/var/www/wordpress" --locale=fr_FR --allow-root
 	else
 		echo "WordPress files already exist, skipping download"
 	fi
-	wp config create --path="$WP_DIR" \
-		--dbname="$DB_NAME" \
-		--dbuser="$DB_USER" \
-		--dbpass="$DB_PASSWORD" \
-		--dbhost="$DB_PASSWORD" \
+	wp config create --path="/var/www/wordpress" \
+		--dbname="$WP_DB_NAME" \
+		--dbuser="$WP_DB_USER" \
+		--dbpass="$WP_DB_PASSWORD" \
+		--dbhost="$WP_DB_HOST" \
 		--allow-root
-	wp core install --path="$WP_DIR" \
+	wp core install --path="/var/www/wordpress" \
 		--url="http://$DOMAIN_NAME" \
 		--title="My WordPress Site" \
 		--admin_user="$WP_ADMIN_USER" \
@@ -24,7 +28,7 @@ if [ ! -f "$WP_DIR/wp-config.php" ];then
 else
 	echo "WordPress is already installed, skipping."
 fi
-if [ ! "/run/php" ];then
-	mkdir /run/php
+if [ ! -d "/run/php" ];then
+	mkdir -p /run/php
 fi
-exec( "/usr/sbin/php-fpm7.3 -F");
+exec php-fpm8.2 -F

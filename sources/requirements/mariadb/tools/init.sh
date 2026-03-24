@@ -5,8 +5,8 @@ set -e
 mkdir -p /run/mysqld
 chown -R mysql:mysql /run/mysqld
 
-#Start MariaDB manually
-mysqld_safe &
+# Start MariaDB temporarily
+mysqld_safe --skip-networking &
 
 # Wait until it's ready
 until mysqladmin ping --silent; do
@@ -14,15 +14,14 @@ until mysqladmin ping --silent; do
 	sleep 2
 done
 
-# Run SQL setup
-mysql -e "CREATE DATABASE IF NOT EXISTS \'${SQL_DATABASE}\';"
-mysql -e "CREATE USER IF NOT EXISTS \'${SQL_USER}\'@'localhost' IDENTIFIED BY '${SQL_PASSWORD}';"
-mysql -e "GRANT ALL PRIVILEGES ON \'${SQL_DATABASE}\'.* TO \'${SQL_USER}\@'%' IDENTIFIED BY '${SQL_PASSWORD}';"
-mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${SQL_ROOT_PASSWORD}';"
+# Setup database and user
+mysql -e "CREATE DATABASE IF NOT EXISTS \`${SQL_DATABASE}\`;"
+mysql -e "CREATE USER IF NOT EXISTS '${SQL_USER}'@'%' IDENTIFIED BY '${SQL_PASSWORD}';"
+mysql -e "GRANT ALL PRIVILEGES ON \`${SQL_DATABASE}\`.* TO '${SQL_USER}'@'%';"
 mysql -e "FLUSH PRIVILEGES;"
 
 # Shutdown temporary server
-mysqladmin -u root -p$SQL_ROOT_PASSWORD shutdown
+mysqladmin shutdown
 
-# Start MariaDB in foreground (important for Docker)
+# Start MariaDB properly in foreground
 exec mysqld_safe

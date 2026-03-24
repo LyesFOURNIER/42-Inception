@@ -48,17 +48,7 @@ services:
       - "9000"
 volumes:
   wordpress:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/home/lfournie/data/wordpress'
   mariadb:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/home/lfournie/data/mariadb'
 networks:
   inception:
     driver: bridge
