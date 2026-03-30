@@ -16,7 +16,7 @@ down:	## Stop all services and removes all containers.
 	docker-compose -f sources/docker-compose.yml down
 destroy:## Stop all services and removes all containers, networks, volumes and images.
 	docker-compose -f sources/docker-compose.yml down -v
-	docker system prune -a --filter label=wordpress --filter label=mariadb --filter label=nginx
+	docker system prune -af --filter label=wordpress --filter label=mariadb --filter label=nginx
 stop:	## Stop all existing services.
 	docker-compose -f sources/docker-compose.yml stop
 restart:## Stop all existing services and restart them cleanly.
@@ -24,6 +24,6 @@ restart:## Stop all existing services and restart them cleanly.
 	docker-compose -f sources/docker-compose.yml up
 rebuild: ## Remove all existing services and clean all containers, networks, volumes and images before rebuilding everything cleanly.
 	docker-compose -f sources/docker-compose.yml down -v
-	docker system prune -a --filter laber=wordpress --filter label=mariadb --filter label=nginx
+	docker system prune -af --filter label=wordpress --filter label=mariadb --filter label=nginx
 	docker-compose -f sources/docker-compose.yml up --build
 

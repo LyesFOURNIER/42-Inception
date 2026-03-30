@@ -28,6 +28,7 @@ if [ ! -f "/var/www/wordpress/wp-config.php" ];then
 else
 	echo "WordPress is already installed, skipping."
 fi
+chown -R www-data:www-data /var/www/wordpress
 if [ ! -d "/run/php" ];then
 	mkdir -p /run/php
 fi
