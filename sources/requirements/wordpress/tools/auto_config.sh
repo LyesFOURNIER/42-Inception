@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Waiting for MariaDB on $WP_DB_HOST..."
-until mysql -h"$WP_DB_HOST" -u"$WP_DB_USER" -p"$WP_DB_PASSWORD" -e "SELECT 1;" &> /dev/null;do
+until mysql -h"$WP_DB_HOST" -u"$WP_DB_USER" -p"$WP_DB_PASSWORD" "$WP_DB_NAME" -e "SELECT 1;" &> /dev/null;do
 	sleep 1
 done
 echo "MariaDB is ready!"
@@ -18,7 +18,7 @@ if [ ! -f "/var/www/wordpress/wp-config.php" ];then
 		--dbhost="$WP_DB_HOST" \
 		--allow-root
 	wp core install --path="/var/www/wordpress" \
-		--url="http://$DOMAIN_NAME" \
+		--url="https://$DOMAIN_NAME" \
 		--title="My WordPress Site" \
 		--admin_user="$WP_ADMIN_USER" \
 		--admin_password="$WP_ADMIN_PASSWORD" \
