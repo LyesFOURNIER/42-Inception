@@ -115,23 +115,30 @@ clone the repository:
 ### Running the project
 Build and start all services:
 > make
-> or
+
+or
 > make up
+
 Just build
 > make build
+
 Start all existing containers:
 > make start
+
 Stop all existing containers:
 > make stop
+
 Stop and remove all existing containers:
 > make down
+
 For more available commands:
 > make help
 
 ### Access
 Once running, open:
 > https://lfournie.42.fr
-> or
+
+or
 > https://localhost
 
 ## Resources
