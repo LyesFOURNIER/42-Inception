@@ -8,6 +8,7 @@ While a VM could be used to fix this compatibility issue, it came with several h
 - You had to install an OS to make it run, which takes **several gigabytes of overhead** unrelated to the project at hand;
 - It could take **several minutes to boot** depending on the resources allocated;
 - Scaling up a project meant more VMs to setup, more OSes to install and even more overhead.
+
 In short, it was **useful but cumbersome**.
 
 Enter **Docker**, a new service which would tackle all the problems the VM was used for but in a better fashion.
@@ -17,6 +18,7 @@ What does that involve?
 - **Less overhead** due to OSes files;
 - An environment that, once built, **launches almost instantly**;
 - A **better scalability** of projects.
+
 How does containers save weight?
 Unlike VMs, which create a virtual kernel, **containers use the kernel of the host machine**, skipping the need for sizable OS's files; no new OS installation is needed.
 
@@ -25,6 +27,7 @@ Docker hasn't invented containers mind you, but it made several huge improvement
 - It gave developers a **simple CLI**(command-line interface);
 - It brought a **layered image system**(which optimize storage space and minimize duplication of data);
 - It introduced **Docker Hub** for image sharing.
+
 Thus taking a complicated but useful concept and simplifying it, in addition to making it shareable, creating an active community around them.
 
 Now what does the "Inception" subject ask of us?
@@ -102,9 +105,9 @@ Volumes are used for **data persistence** to ensure **portability** and **avoid 
 Make sure you have the following installed:
 - **Docker**
 - **Docker Compose**
+
 Check installation:
 > docker --version
->
 > docker compose version
 
 ### Installation
