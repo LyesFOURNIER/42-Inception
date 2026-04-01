@@ -20,6 +20,7 @@ What does that involve?
 - A **better scalability** of projects.
 
 How does containers save weight?
+
 Unlike VMs, which create a virtual kernel, **containers use the kernel of the host machine**, skipping the need for sizable OS's files; no new OS installation is needed.
 
 Docker hasn't invented containers mind you, but it made several huge improvements to their usage:
