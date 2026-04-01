@@ -114,8 +114,9 @@ Check installation:
 
 ### Installation
 clone the repository:
-> git clone <repo-SSH-link> <name-of-cloned-folder>
-> cd <name-of-cloned-folder>
+> git clone *repo-SSH-link* *name-of-cloned-folder*
+
+> cd *name-of-cloned-folder*
 
 ### Running the project
 Build and start all services:
