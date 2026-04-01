@@ -14,12 +14,12 @@ In short, it was **useful but cumbersome**.
 Enter **Docker**, a new service which would tackle all the problems the VM was used for but in a better fashion.
 Docker uses **Containers**: an executable package of software that includes everything to run an application: code, runtime, system tools, system libraries and settings; in essence, everything a VM offered but with one huge difference, **a lighter standalone frame**.
 
-What does that involve?
+#### What does that involve?
 - **Less overhead** due to OSes files;
 - An environment that, once built, **launches almost instantly**;
 - A **better scalability** of projects.
 
-How does containers save weight?
+#### How does containers save weight?
 
 Unlike VMs, which create a virtual kernel, **containers use the kernel of the host machine**, skipping the need for sizable OS's files; no new OS installation is needed.
 
