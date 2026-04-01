@@ -108,6 +108,7 @@ Make sure you have the following installed:
 
 Check installation:
 > docker --version
+
 > docker compose version
 
 ### Installation
