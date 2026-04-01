@@ -31,6 +31,7 @@ As an introduction to Docker, we are to create a simple Docker network, meaning 
 - **Nginx**
 - **MariaDB**
 - **WordPress**
+
 ## Project Description/Architecture
 As said previously, this project aims to set up a simple infrastructure using **Docker** and **Docker Compose**.
 Each service runs in its own container and communicate through a dedicated Docker network.
@@ -55,6 +56,7 @@ The following design choices have been taken for this project:
 - Nginx is the **only exposed entry point** (port 443).
 
 ### A few technical comparisons
+
 #### Virtual Machines vs Docker
 | **VMs**                 | **Docker**                      |
 |-------------------------|---------------------------------|
@@ -63,7 +65,7 @@ The following design choices have been taken for this project:
 | Higher resource usage   | Efficient resource usage        |
 | Strong isolation        | Process-level isolation         |
 
-Docker is used because it is lightweight, faster and better suited for microservices.
+Docker is used because it is **lightweight, faster and better suited for microservices**.
 
 #### Secret vs Environment Variables
 | **Secret** | **Environment Variables** |
@@ -72,7 +74,7 @@ Docker is used because it is lightweight, faster and better suited for microserv
 | Mounted as file at runtime | Passed as plain text |
 | Safer for passwords and keys | Easier but less secure |
 
-Docker secrets are used for sensitive data (DB passwords), while environment variables are used for non-sensitive configuration.
+Docker secrets are used for **sensitive** data (DB passwords), while environment variables are used for **non-sensitive** configuration.
 I haven't used secrets in this project but an environment file.
 
 #### Docker Network vs Host Network
@@ -82,7 +84,7 @@ I haven't used secrets in this project but an environment file.
 | Containers communicate via service names | Uses localhost directly |
 | Better security and control | Less isolation |
 
-A cutstom Docker network is used to ensure isolation and allow containers to communicate using DNS (service names).
+A cutstom Docker network is used to ensure **isolation** and allow containers to communicate using **DNS** (service names).
 
 #### Docker Volumes vs Bind Mounts
 | **Docker Volumes** | **Bind Mounts** |
@@ -91,43 +93,45 @@ A cutstom Docker network is used to ensure isolation and allow containers to com
 | Portable and safer | Depends on host structure |
 | Better for production | Useful for development |
 
-Volumes are used for data persistence to ensure portability and avoid dependency on host paths.
+Volumes are used for **data persistence** to ensure **portability** and **avoid dependency** on host paths.
 
 
 ## Instructions
 ### Prerequisites
 Make sure you have the following installed:
-- Docker
-- Docker Compose
+- **Docker**
+- **Docker Compose**
 Check installation:
-    > docker --version
-    > docker compose version
+> docker --version
+and
+> docker compose version
+
 ### Installation
 clone the repository:
-    > git clone <repo-SSH-link> <name-of-cloned-folder>
-    > cd <name-of-cloned-folder>
+> git clone <repo-SSH-link> <name-of-cloned-folder>
+> cd <name-of-cloned-folder>
 
 ### Running the project
 Build and start all services:
-    > make
+> make
 or 
-    > make up
+> make up
 Just build
-    > make build
+> make build
 Start all existing containers:
-    > make start
+> make start
 Stop all existing containers:
-    > make stop
+> make stop
 Stop and remove all existing containers:
-    > make down
+> make down
 For more available commands:
-    > make help
+> make help
 
 ### Access
 Once running, open:
-    > https://lfournie.42.fr
+> https://lfournie.42.fr
 or
-    > https://localhost
+> https://localhost
 
 ## Resources
 
@@ -140,12 +144,12 @@ The following resources were used to understand and build the project:
 
 ### AI usage
 AI tools (such as ChatGPT) were used in the following ways:
-- Understand obscure concepts in relation to Docker
+- Understand **obscure concepts** in relation to Docker and used containers
 - Help debug configuration on a nearly **finished** project
-- Help structuring the README
+- Help **structuring** the README
 - Testing myself against a simulated examinator
 
 AI tools were not used for:
-- Building the project from scrap
-- Explaining every single concept without searching for and trying to understand them first.
-- Writing the README from scrap
+- Building the project **from scrap**
+- Explaining every single concept **without** searching for and trying to understand them first.
+- Writing the README **from scrap**
