@@ -104,7 +104,7 @@ Make sure you have the following installed:
 - **Docker Compose**
 Check installation:
 > docker --version
-and
+>
 > docker compose version
 
 ### Installation
@@ -115,7 +115,7 @@ clone the repository:
 ### Running the project
 Build and start all services:
 > make
-or 
+> or
 > make up
 Just build
 > make build
@@ -131,7 +131,7 @@ For more available commands:
 ### Access
 Once running, open:
 > https://lfournie.42.fr
-or
+> or
 > https://localhost
 
 ## Resources
