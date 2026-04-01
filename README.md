@@ -62,6 +62,7 @@ The following design choices have been taken for this project:
 | Slower startup          | Fast startup                    |
 | Higher resource usage   | Efficient resource usage        |
 | Strong isolation        | Process-level isolation         |
+
 Docker is used because it is lightweight, faster and better suited for microservices.
 
 #### Secret vs Environment Variables
@@ -70,7 +71,9 @@ Docker is used because it is lightweight, faster and better suited for microserv
 | Stored securely (not exposed in image/layers) | Visible in container config |
 | Mounted as file at runtime | Passed as plain text |
 | Safer for passwords and keys | Easier but less secure |
+
 Docker secrets are used for sensitive data (DB passwords), while environment variables are used for non-sensitive configuration.
+I haven't used secrets in this project but an environment file.
 
 #### Docker Network vs Host Network
 | **Docker Network** | **Host Network** |
@@ -78,6 +81,7 @@ Docker secrets are used for sensitive data (DB passwords), while environment var
 | Isolated internal network | Shares host network |
 | Containers communicate via service names | Uses localhost directly |
 | Better security and control | Less isolation |
+
 A cutstom Docker network is used to ensure isolation and allow containers to communicate using DNS (service names).
 
 #### Docker Volumes vs Bind Mounts
@@ -86,47 +90,62 @@ A cutstom Docker network is used to ensure isolation and allow containers to com
 | Managed by Docker | Linked to host filesystem |
 | Portable and safer | Depends on host structure |
 | Better for production | Useful for development |
-Volumes are used for data persistence to ensure portability and avoid
-dependency on host paths.
 
-### Sources
+Volumes are used for data persistence to ensure portability and avoid dependency on host paths.
+
+
+## Instructions
+### Prerequisites
+Make sure you have the following installed:
+- Docker
+- Docker Compose
+Check installation:
+    > docker --version
+    > docker compose version
+### Installation
+clone the repository:
+    > git clone <repo-SSH-link> <name-of-cloned-folder>
+    > cd <name-of-cloned-folder>
+
+### Running the project
+Build and start all services:
+    > make
+or 
+    > make up
+Just build
+    > make build
+Start all existing containers:
+    > make start
+Stop all existing containers:
+    > make stop
+Stop and remove all existing containers:
+    > make down
+For more available commands:
+    > make help
+
+### Access
+Once running, open:
+    > https://lfournie.42.fr
+or
+    > https://localhost
+
+## Resources
+
+### Documentation and Learing Materials
+The following resources were used to understand and build the project:
 - Docker [official documentation](https://docs.docker.com/).
 - Docker Compose [documentation](https://docs.docker.com/compose/)
 - [Nginx](https://nginx.org/en/docs/), [WordPress](https://wordpress.org/documentation/) and [MariaDB](https://mariadb.com/docs) official documentations.
 - [Tutorial](https://tuto.grademe.fr/inception/) for Inception (outdated but serves as a good starting point).
-## Instructions
-### Build & Run
-    > make
-### Stop
-    > make stop
-### Clean
-    > make destroy
-### Access
-    > https://lfournie.42.fr
-or
-    > https://localhost
-### For more Makefile commands
-    > make help
 
-## Design Choices
-- One container per service (separation of concerns)
-- Debian-based images for stability
-- Manual setup (no pre-built images)
-- Volumes for persistent data
+### AI usage
+AI tools (such as ChatGPT) were used in the following ways:
+- Understand obscure concepts in relation to Docker
+- Help debug configuration on a nearly **finished** project
+- Help structuring the README
+- Testing myself against a simulated examinator
 
-## Comparisons
-# Virtual Machines vs Docker
-- VMs: heavy, full OS
-- Docker: lightweight, fast, shared kernel
-
-# Secrets vs Environment Variables
-- Env vars: simple but not secure
-- Secrets: safer for sensitive data
-
-# Docker Network vs Host
-- Docker network: isolated and flexible
-- Host: less secure, no isolation
-
-# Volumes vs Bind Mounts
-- Volumes: managed, portable
-- Bind mounts: tied to host, less portable
+AI tools were not used for:
+- Building the project from scrap
+- Explaining every single concept without searching for and trying to understand them first.
+- Writing the README from scrap
