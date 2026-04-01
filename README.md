@@ -2,6 +2,7 @@
 *This project has been created as part of the 42 curriculum by lfournie.*
 ## Description
 The "Inception" project serves as an introduction to the service called **Docker**.
+
 It was created back in 2013 as a alternative to virtual machines; you see, virtual machines did their job well, which was to solve the portability issues between different architectures on which developers coded, but they had one major flaw: **their size**.
 While a VM could be used to fix this compatibility issue, it came with several huge drawbacks related to their size:
 - You had to install an OS to make it run, which takes **several gigabytes of overhead** unrelated to the project at hand;
