@@ -22,8 +22,13 @@ stop:	## Stop all existing services.
 restart:## Stop all existing services and restart them cleanly.
 	docker-compose -f sources/docker-compose.yml stop
 	docker-compose -f sources/docker-compose.yml up
-rebuild: ## Remove all existing services and clean all containers, networks, volumes and images before rebuilding everything cleanly.
+rebuild:## Remove all existing services and clean all containers, networks, volumes and images before rebuilding everything cleanly.
 	docker-compose -f sources/docker-compose.yml down -v
 	docker system prune -af --filter label=wordpress --filter label=mariadb --filter label=nginx
 	docker-compose -f sources/docker-compose.yml up --build
-
+ps:	## Show all containers
+	docker ps
+logs:	## Show the logs of all containers
+	docker-compose -f sources/docker-compose.yml logs
+volumes: ## Show all existing volumes
+	docker volume ls
