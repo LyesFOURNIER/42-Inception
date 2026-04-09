@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Waiting for MariaDB on $WP_DB_HOST..."
+echo "Waiting for MariaDB database..."
 until mysql -h"$WP_DB_HOST" -u"$WP_DB_USER" -p"$WP_DB_PASSWORD" "$WP_DB_NAME" -e "SELECT 1;" &> /dev/null;do
 	sleep 1
 done
@@ -25,8 +25,19 @@ if [ ! -f "/var/www/wordpress/wp-config.php" ];then
 		--admin_email="$WP_ADMIN_EMAIL" \
 		--skip-email \
 		--allow-root
+	
 else
 	echo "WordPress is already installed, skipping."
+fi
+if ! wp user get "$WP_USER" --allow-root --path="/var/www/wordpress" &> /dev/null; then
+	wp user create "$WP_USER" "$WP_EMAIL" \
+		--role=editor \
+		--user_pass="$WP_PASSWORD" \
+		--allow-root \
+		--path="/var/www/wordpress"
+	echo "editor '$WP_USER' created."
+else
+	echo "editor '$WP_USER' already exists."
 fi
 chown -R www-data:www-data /var/www/wordpress
 if [ ! -d "/run/php" ];then
